@@ -1,5 +1,7 @@
 # I'm going to try to simulate this to how in the movie Black Mirror: Bandersnatch is portrayed. It's similar in the aspect of making choices but you get to navigate around
-from sys import exit
+from sys import exit ; from random import randint ; from textwrap import dedent
+
+choice = input("> ")
 
 class Scene(object):
 
@@ -14,11 +16,28 @@ class Engine(object):
 # The class Death will be where you get some nice comments when you fail
 class Death(object):
     death_type = [
+        "You don't have a choice with death.",
+        "Better luck next time",
+        "You should throw your computer away because of how bad you are",
+        "Why bother playing?"
+        ]
 
-
-    ]
+    def enter(self):
+        print(Death.death_type[randint(0, len(self.death_type)-1)])
+        exit(1)
 
 class Room(Scene):
+
+    def enter(self):
+        print(dedent("""
+        You wake up gasping for air and its the same dream, every night.
+        It's time to start the day ."""))
+        print(dedent("""
+        The morning routine: Brush teeth, take your meds, and shower... """))
+        print(f"1. I'm gonna skip taking my meds they're making me feel strange. 2. Skip morning routine entirely. 3. Go back to bed.
+
+
+class Limbo(Scene):
 
     def enter(self):
         pass
@@ -49,5 +68,7 @@ class SecretRoom(Scene):
 class World(object):
 
     scenes = {
+    'death': Death(),
+
 
     }
