@@ -34,7 +34,18 @@ class Room(Scene):
         It's time to start the day ."""))
         print(dedent("""
         The morning routine: Brush teeth, take your meds, and shower... """))
-        print(f"1. I'm gonna skip taking my meds they're making me feel strange. 2. Skip morning routine entirely. 3. Go back to bed.
+        print(dedent("""
+        1. I'm gonna skip taking my meds they're making me feel strange. 
+        2. Skip morning routine entirely. 
+        3. Go back to bed.
+        """))
+
+        if choice == '1':
+            print(dedent("""
+            The therapist told you to take your meds or you won't be able to function properly
+            """))
+        
+    
 
 
 class Limbo(Scene):
@@ -69,6 +80,9 @@ class World(object):
 
     scenes = {
     'death': Death(),
+    'limbo': Limbo(),
+    'therapist': Therapist(),
+
 
 
     }
