@@ -143,7 +143,7 @@ class Therapist(Scene):
                 I'm going to give you some meds to help with your mental health.
                 """))
             else:
-                return 'work'
+                return 'room'
         else:
             print(dedent("""
             Your eyes start glazing over and you go to an unconscious state
@@ -162,7 +162,7 @@ class Map(object):
     'limbo': Limbo(),
     'therapist': Therapist(),
     'room': Room(),
-    'finished': Finished,
+    'finished': Finished(),
     }
 
     def __init__(self, start_scene):
