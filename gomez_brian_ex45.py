@@ -1,8 +1,5 @@
-# I'm going to try to simulate this to how in the movie Black Mirror: Bandersnatch is portrayed. It's similar in the aspect of making choices.
+# I'm going to try to simulate this to how in the movie Black Mirror: Bandersnatch is portrayed. It's similar in the aspect of making choices and its my own little spin up of it.
 from sys import exit ; from random import randint ; from textwrap import dedent
-
-choice = input("> ")
-
 class Scene(object):
 
     def enter(self):
@@ -50,24 +47,32 @@ class Room(Scene):
         3. Go back to bed.
         """))
 
+        choice = input("> ")
+
         if choice == '1':
             print(dedent("""
             The therapist told you to take your meds or you won't be able to function properly.
             1. Should I call her?
             2. Continue about your day?
             """))
-            if choice == '1':
+            choice1 = input("> ")
+
+            if choice1 == '1':
+                print(dedent("""
+                Hey, I need to see you immediately. I'm heading over right now so you better clear your appointments
+                """))
                 return 'therapist'
             else:
                 return 'work'
+                
         elif choice == '2':
             print(dedent("""
             You're not late for anything but you look ragged. But it'll be another day at work in your little cubicle
 
             """))
             return 'work'
-        else choice == '3':
-            return 'death'
+        else:
+            return 'limbo'
 
         
     
@@ -76,7 +81,34 @@ class Room(Scene):
 class Limbo(Scene):
 
     def enter(self):
-        pass
+        print(dedent("""
+        Mom!! I can't find my toy. I'm not going anywhere without it...
+        """))
+
+        print(dedent("""
+        We're going to miss the 1500 train and have to get on the 1530 , leave it behind...
+        1. We'll take the next train until I find it. I don't care if we're late
+        2. I'll stay home
+        """))
+        choice = input("> ")
+
+        if choice == '1':
+            print(dedent("""
+             TV NEWS REPORTER: 
+                The 1530 train crashed and everyone died. the only train that made it was the 1500. Can you imagine,
+                If you got on a little earlier you would've survived.
+                A moment of silence for those lost in this tragic accident.
+
+             """))
+             return 'death'
+        else:
+            print(dedent("""
+            TV NEWS REPORTER:
+                The 1530 train survived a horrific accident. The passengers made it out alive
+            """))
+            return 'work'
+
+        
 
 
 class Therapist(Scene):
@@ -88,7 +120,8 @@ class Therapist(Scene):
         2. I feel like I'm not making these choices.
         3. Yes.
         """))
-        
+        choice = input("> ")
+
         if choice == '1':
             print(dedent("""
             Back home we go...
@@ -97,8 +130,23 @@ class Therapist(Scene):
         elif choice == '2':
             print(dedent("""
             Why do you feel like you can't make choices? Is it delusional or do you feel like physically you can't?
-            1.)
+            1. I don't know.
+            2. It feels like when I make a decision, something else takes over and does it for me.
             """))
+            choice1 = input("> ")
+            
+            if choice1 == '1':
+                print(dedent("""
+                I'm going to give you some meds to help with your mental health.
+                """))
+            else:
+                return 'work'
+        else:
+            print(dedent("""
+            Your eyes start glazing over and you go to an unconscious state
+            """))
+            return 'limbo'
+            
 
     
 class Work(Scene):
@@ -106,28 +154,16 @@ class Work(Scene):
     def enter(self):
         pass
 
-class ColinsHouse(Scene):
-
-    def enter(self):
-        pass
-
-class SecretRoom(Scene):
-
-    def enter(self):
-        pass
-
-
-# The class World is where everything is going to take place. it'll be where everything gets pointed to.
-class World(object):
+# The class Map is where everything is going to take place. it'll be where everything gets pointed to.
+class Map(object):
 
     scenes = {
     'death': Death(),
     'limbo': Limbo(),
     'therapist': Therapist(),
     'work': Work(),
-    'colins house': ColinsHouse(),
-    'secret room': SecretRoom(),
-    'room': Room()
+    'room': Room(),
+
     }
 
     def __init__(self, start_scene):
@@ -138,4 +174,8 @@ class World(object):
         return val
     def opening_scene(self):
         return self.next_scene(self.start_scene)
+
+a_map = Map('room')
+a_game = Engine(a_map)
+a_game.play()
 
