@@ -1,4 +1,4 @@
-# I'm going to try to simulate this to how in the movie Black Mirror: Bandersnatch is portrayed. It's similar in the aspect of making choices.
+# I'm going to try to simulate this to how in the movie Black Mirror: Bandersnatch is portrayed. It's similar in the aspect of making choices and its my own little spin up of it.
 from sys import exit ; from random import randint ; from textwrap import dedent
 class Scene(object):
 
@@ -81,12 +81,33 @@ class Room(Scene):
 class Limbo(Scene):
 
     def enter(self):
-        print(dedent"""
-        Mom!! I can't find my toy. I'm not going anywhere without it...
-        """)
         print(dedent("""
-        We're going to miss the train, leave it behind..
+        Mom!! I can't find my toy. I'm not going anywhere without it...
         """))
+
+        print(dedent("""
+        We're going to miss the 1500 train and have to get on the 1530 , leave it behind...
+        1. We'll take the next train until I find it. I don't care if we're late
+        2. I'll stay home
+        """))
+        choice = input("> ")
+
+        if choice == '1':
+            print(dedent("""
+             TV NEWS REPORTER: 
+                The 1530 train crashed and everyone died. the only train that made it was the 1500. Can you imagine,
+                If you got on a little earlier you would've survived.
+                A moment of silence for those lost in this tragic accident.
+
+             """))
+             return 'death'
+        else:
+            print(dedent("""
+            TV NEWS REPORTER:
+                The 1530 train survived a horrific accident. The passengers made it out alive
+            """))
+            return 'work'
+
         
 
 
@@ -114,7 +135,7 @@ class Therapist(Scene):
             """))
             choice1 = input("> ")
             
-            if choice == '1':
+            if choice1 == '1':
                 print(dedent("""
                 I'm going to give you some meds to help with your mental health.
                 """))
