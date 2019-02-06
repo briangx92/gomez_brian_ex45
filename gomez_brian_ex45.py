@@ -70,7 +70,7 @@ class Room(Scene):
             You're not late for anything but you look ragged. But it'll be another day at work in your little cubicle
 
             """))
-            return 'work'
+            return 'death'
         else:
             return 'limbo'
 
@@ -106,7 +106,10 @@ class Limbo(Scene):
             TV NEWS REPORTER:
                 The 1530 train survived a horrific accident. The passengers made it out alive
             """))
-            return 'work'
+            print(dedent("""
+            GAME OVER
+            """))
+
 
         
 
@@ -146,7 +149,11 @@ class Therapist(Scene):
             Your eyes start glazing over and you go to an unconscious state
             """))
             return 'limbo'
-            
+class Finished(Scene):
+    def enter(self):
+        print("Congrats You Win")
+        
+        
 # The class Map is where everything is going to take place. it'll be where everything gets pointed to.
 class Map(object):
 
@@ -155,7 +162,7 @@ class Map(object):
     'limbo': Limbo(),
     'therapist': Therapist(),
     'room': Room(),
-
+    'finished': Finished,
     }
 
     def __init__(self, start_scene):
