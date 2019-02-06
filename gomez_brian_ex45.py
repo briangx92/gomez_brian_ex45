@@ -154,17 +154,6 @@ class Work(Scene):
     def enter(self):
         pass
 
-class ColinsHouse(Scene):
-
-    def enter(self):
-        pass
-
-class SecretRoom(Scene):
-
-    def enter(self):
-        pass
-
-
 # The class Map is where everything is going to take place. it'll be where everything gets pointed to.
 class Map(object):
 
@@ -173,8 +162,6 @@ class Map(object):
     'limbo': Limbo(),
     'therapist': Therapist(),
     'work': Work(),
-    'colins house': ColinsHouse(),
-    'secret room': SecretRoom(),
     'room': Room(),
 
     }
