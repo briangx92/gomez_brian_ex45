@@ -100,7 +100,7 @@ class Limbo(Scene):
                 A moment of silence for those lost in this tragic accident.
 
              """))
-             return 'death'
+            return 'death'
         else:
             print(dedent("""
             TV NEWS REPORTER:
@@ -147,13 +147,6 @@ class Therapist(Scene):
             """))
             return 'limbo'
             
-
-    
-class Work(Scene):
-
-    def enter(self):
-        pass
-
 # The class Map is where everything is going to take place. it'll be where everything gets pointed to.
 class Map(object):
 
@@ -161,7 +154,6 @@ class Map(object):
     'death': Death(),
     'limbo': Limbo(),
     'therapist': Therapist(),
-    'work': Work(),
     'room': Room(),
 
     }
